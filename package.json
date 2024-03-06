@@ -1,0 +1,27 @@
+{
+    "name": "mysticwebcraft-backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon Server.js",
+        "start": "node Server.js"
+    },
+    "repository": {
+        "directory": "Ushan-Dilusha/mysticwebcraft-backend",
+        "url": "git+https://github.com/Ushan-Dilusha/mysticwebcraft-backend.git"
+    },
+    "author": "Ushan Dilusha",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Ushan-Dilusha/mysticwebcraft-backend/issues"
+    },
+    "homepage": "https://github.com/Ushan-Dilusha/mysticwebcraft-backend#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.18.3",
+        "mongoose": "^8.2.1",
+        "nodemon": "^3.1.0"
+    }
+}
