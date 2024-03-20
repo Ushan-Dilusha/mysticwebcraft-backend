@@ -11,6 +11,7 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(express.json());
 app.use(cors());
+app.use("/api", routes)
 
 database.on("error", console.error.bind(console, "MongoDB connection error:"));
 database.once("open", () => console.log("Waiting to Connect DB"));
