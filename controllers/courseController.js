@@ -1,7 +1,7 @@
 const Course = require('../models/Course');
 
 // Controller functions for CRUD operations on courses
-exports.createCourse = async (req, res) => {
+const createCourse = async (req, res) => {
     try {
         const newCourse = await Course.create(req.body);
         res.status(201).json(newCourse);
@@ -10,7 +10,7 @@ exports.createCourse = async (req, res) => {
     }
 };
 
-exports.getAllCourses = async (req, res) => {
+const getAllCourses = async (req, res) => {
     try {
         const courses = await Course.find();
         res.json(courses);
@@ -19,7 +19,7 @@ exports.getAllCourses = async (req, res) => {
     }
 };
 
-exports.getCourseById = async (req, res) => {
+const getCourseById = async (req, res) => {
     try {
         const course = await Course.findById(req.params.id);
         if (!course) {
@@ -31,7 +31,7 @@ exports.getCourseById = async (req, res) => {
     }
 };
 
-exports.updateCourse = async (req, res) => {
+const updateCourse = async (req, res) => {
     try {
         const updatedCourse = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedCourse) {
@@ -42,8 +42,7 @@ exports.updateCourse = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
-exports.deleteCourse = async (req, res) => {
+const deleteCourse = async (req, res) => {
     try {
         const deletedCourse = await Course.findByIdAndDelete(req.params.id);
         if (!deletedCourse) {
@@ -53,4 +52,12 @@ exports.deleteCourse = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+};
+
+module.exports = {
+    createCourse,
+    getAllCourses,
+    getCourseById,
+    deleteCourse,
+    updateCourse,
 };
