@@ -19,7 +19,7 @@ router.delete('/courses/:id', deleteCourse);
 
 
 
-//..............Question controller
+//..............Question controller.........................................
 
 
 const {createQuestion,updateQuestion,deleteQuestion,getQuestion,getAllQuestion,fetchFilteredQuestions} = require("../controllers/questionCtrl");
@@ -59,9 +59,9 @@ router.get('/filter', async (req, res) => {
 });
 
 
-//..................Quizset
+//..................Quizset controller....................................
 
-// routes.js
+
 
 const express = require('express');
 const quizSetController = require('../controllers/quizCtrl');
