@@ -10,7 +10,7 @@ const AddCourse = async (req, res) => {
     }
 };
 
-const getAllCourses = async (req, res) => {
+const ViewCourses = async (req, res) => {
     try {
         const courses = await Course.find();
         res.json(courses);
@@ -42,7 +42,7 @@ const updateCourse = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-const deleteCourse = async (req, res) => {
+const DeleteCourse = async (req, res) => {
     try {
         const deletedCourse = await Course.findByIdAndDelete(req.params.id);
         if (!deletedCourse) {
@@ -56,8 +56,8 @@ const deleteCourse = async (req, res) => {
 
 module.exports = {
     AddCourse,
-    getAllCourses,
+    ViewCourses,
     getCourseById,
-    deleteCourse,
+    DeleteCourse,
     updateCourse,
 };
