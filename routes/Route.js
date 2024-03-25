@@ -2,7 +2,7 @@ const { Router } = require("express")
 const router = Router()
 
 const { getOneCommunity, getAllCommunities, addCommunity, updateCommunity, deleteCommunity } = require("../controllers/CommiunityController")
-const { getCourseById, getAllCourses, createCourse, updateCourse, deleteCourse } = require("../controllers/CourseController")
+const { getCourseById, getAllCourses, AddCourse, updateCourse, deleteCourse } = require("../controllers/CourseController")
 
 
 router.post("/communities", addCommunity);
@@ -11,7 +11,7 @@ router.get("/communities/:id", getOneCommunity);
 router.put("/communities/:id", updateCommunity);
 router.delete("/communities/:id", deleteCommunity);
 
-router.post('/courses',createCourse);
+router.post('/courses',AddCourse);
 router.get('/courses', getAllCourses);
 router.get('/courses/:id', getCourseById);
 router.put('/courses/:id', updateCourse);

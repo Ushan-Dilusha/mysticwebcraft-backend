@@ -1,7 +1,7 @@
 const Course = require('../models/Course');
 
 // Controller functions for CRUD operations on courses
-const createCourse = async (req, res) => {
+const AddCourse = async (req, res) => {
     try {
         const newCourse = await Course.create(req.body);
         res.status(201).json(newCourse);
@@ -55,7 +55,7 @@ const deleteCourse = async (req, res) => {
 };
 
 module.exports = {
-    createCourse,
+    AddCourse,
     getAllCourses,
     getCourseById,
     deleteCourse,
