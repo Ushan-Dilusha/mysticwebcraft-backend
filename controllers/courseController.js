@@ -1,14 +1,69 @@
 const Course = require('../models/Course');
+const multer = require("multer");
+const fs = require('fs');
+
+
+
+
+
+// // Controller functions for CRUD operations on courses
+// const AddCourse = async (req, res) => {
+//     try {
+//         const newCourse = await Course.create(req.body);
+//         res.status(201).json(newCourse);
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// };
+
+// Set up Multer for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads'); // Destination folder for storing files
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname); // Use original filename
+    }
+});
+
+const upload = multer({ storage: storage });
 
 // Controller functions for CRUD operations on courses
 const AddCourse = async (req, res) => {
     try {
-        const newCourse = await Course.create(req.body);
+        // Check if file is uploaded
+        if (!req.file || !req.file.filename) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+
+        // Create a new course with uploaded file
+        const newCourse = new Course({
+            category: req.body.category,
+            title: req.body.title,
+            description: req.body.description,
+            resources: req.body.resources || [],
+            image: {
+                data: fs.readFileSync('uploads/' + req.file.filename),
+                contentType: "image/png" // Adjust content type as needed
+            }, // Save the path of uploaded file
+            chapters: req.body.chapters || [],
+            price: req.body.price
+        });
+
+        // Save the course to the database
+        await newCourse.save();
+        
         res.status(201).json(newCourse);
     } catch (error) {
+        // Handle errors
         res.status(500).json({ error: error.message });
     }
 };
+
+const uploadMiddleware = upload.single('image');
+
+
+
 
 const ViewCourses = async (req, res) => {
     try {
@@ -60,4 +115,5 @@ module.exports = {
     getCourseById,
     DeleteCourse,
     updateCourse,
+    uploadMiddleware
 };

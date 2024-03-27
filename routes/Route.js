@@ -2,7 +2,24 @@ const { Router } = require("express")
 const router = Router()
 
 const { getOneCommunity, getAllCommunities, addCommunity, updateCommunity, deleteCommunity } = require("../controllers/CommiunityController")
-const { getCourseById, ViewCourses, AddCourse, updateCourse, DeleteCourse } = require("../controllers/CourseController")
+const { getCourseById, ViewCourses, AddCourse, updateCourse, DeleteCourse,uploadMiddleware } = require("../controllers/CourseController")
+
+
+const multer = require('multer');
+
+// Set up Multer for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads'); // Destination folder for storing files
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname); // Use unique filename
+    }
+});
+
+const upload = multer({ storage: storage });
+
+
 
 
 router.post("/communities", addCommunity);
@@ -11,7 +28,8 @@ router.get("/communities/:id", getOneCommunity);
 router.put("/communities/:id", updateCommunity);
 router.delete("/communities/:id", deleteCommunity);
 
-router.post('/courses',AddCourse);
+router.post('/courses', uploadMiddleware, AddCourse);
+//router.post('/courses',AddCourse);
 router.get('/courses/getall', ViewCourses);
 router.get('/courses/:id', getCourseById);
 router.put('/courses/:id', updateCourse);

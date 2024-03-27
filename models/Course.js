@@ -17,8 +17,9 @@ const courseSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
-    thumbnail: {
-        type: String
+    image: {
+        data: Buffer,
+        contentType: String,
     },
     chapters: {
         type: [String],
