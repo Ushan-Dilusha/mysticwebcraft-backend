@@ -87,19 +87,71 @@ const getCourseById = async (req, res) => {
 };
 
 
+
+
+
 //.......Update
 
+  
 const updateCourse = async (req, res) => {
     try {
-        const updatedCourse = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!updatedCourse) {
-            return res.status(404).json({ message: 'Course not found' });
+        const {id} = req.params;
+        const {
+            category,
+            title,
+            description,
+            resources,
+            chapters,
+            price,
+        } = req.body;
+        
+        const existingCourse = await Course.findById(id);
+    
+        if (!existingCourse) {
+            return res.status(404).json({ error: "Course not found" });
         }
-        res.json(updatedCourse);
+    
+        let image;
+        if (req.file) {
+            image = {
+                data: fs.readFileSync(`uploads/${req.file.filename}`),
+                contentType: req.file.mimetype,
+            };
+    
+            // Remove existing image if any
+            if (existingCourse.image) {
+                const imagePath = `uploads/${existingCourse.image.filename}`;
+                if (fs.existsSync(imagePath)) {
+                    fs.unlinkSync(imagePath);
+                }
+            }
+        } else {
+            image = existingCourse.image;
+        }
+    
+        const currentTime = new Date();
+        const formattedDateTime = currentTime.toLocaleString();
+    
+        const updateCourse = {
+            category,
+            title,
+            description,
+            resources,
+            chapters,
+            price,
+            image,
+            lastUpdated: formattedDateTime,
+        };
+    
+        await Course.findByIdAndUpdate(id, updateCourse);
+    
+        res.json("Course details updated");
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error("Error updating course details:", error);
+        res.status(500).json({ error: "Server error" });
     }
 };
+
 
 
 

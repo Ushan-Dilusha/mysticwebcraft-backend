@@ -28,6 +28,9 @@ const courseSchema = new mongoose.Schema({
     price: {
         type: String,
         required: true
+    },
+    lastUpdated: {
+        type: String,
     }
 });
 

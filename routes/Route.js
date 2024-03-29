@@ -32,7 +32,7 @@ router.post('/courses', uploadMiddleware, AddCourse);
 //router.post('/courses',AddCourse);
 router.get('/courses/getall', ViewCourses);
 router.get('/courses/:id', getCourseById);
-router.put('/courses/:id', updateCourse);
+router.put('/courses/update/:id',uploadMiddleware,updateCourse);
 router.delete('/courses/:id', DeleteCourse);
 
 
