@@ -63,7 +63,7 @@ const AddCourse = async (req, res) => {
 const uploadMiddleware = upload.single('image');
 
 
-
+//..........View courses
 
 const ViewCourses = async (req, res) => {
     try {
@@ -86,6 +86,9 @@ const getCourseById = async (req, res) => {
     }
 };
 
+
+//.......Update
+
 const updateCourse = async (req, res) => {
     try {
         const updatedCourse = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -97,6 +100,10 @@ const updateCourse = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+
+
+//.............Delete
 const DeleteCourse = async (req, res) => {
     try {
         const deletedCourse = await Course.findByIdAndDelete(req.params.id);
