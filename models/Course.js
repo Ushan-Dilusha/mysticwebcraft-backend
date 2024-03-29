@@ -15,7 +15,7 @@ const courseSchema = new mongoose.Schema({
     },
     resources: {
         type: [String],
-        default: []
+        
     },
     image: {
         data: Buffer,
@@ -23,7 +23,7 @@ const courseSchema = new mongoose.Schema({
     },
     chapters: {
         type: [String],
-        default: []
+       
     },
     price: {
         type: String,

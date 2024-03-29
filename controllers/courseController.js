@@ -41,12 +41,12 @@ const AddCourse = async (req, res) => {
             category: req.body.category,
             title: req.body.title,
             description: req.body.description,
-            resources: req.body.resources || [],
+            resources: req.body.resources ,
             image: {
                 data: fs.readFileSync('uploads/' + req.file.filename),
                 contentType: "image/png" // Adjust content type as needed
             }, // Save the path of uploaded file
-            chapters: req.body.chapters || [],
+            chapters: req.body.chapters ,
             price: req.body.price
         });
 
