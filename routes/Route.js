@@ -3,6 +3,8 @@ const router = Router()
 
 const { getOneCommunity, getAllCommunities, addCommunity, updateCommunity, deleteCommunity } = require("../controllers/commiunityController")
 const { getCourseById, getAllCourses, createCourse, updateCourse, deleteCourse } = require("../controllers/courseController")
+const { analyzeCode } = require("../controllers/codeAnalyzerController")
+
 
 router.post("/communities", addCommunity);
 router.get("/communities", getAllCommunities);
@@ -15,5 +17,7 @@ router.get('/courses', getAllCourses);
 router.get('/courses/:id', getCourseById);
 router.put('/courses/:id', updateCourse);
 router.delete('/courses/:id', deleteCourse);
+
+router.post('/analyze-code', analyzeCode);
 
 module.exports = router;
