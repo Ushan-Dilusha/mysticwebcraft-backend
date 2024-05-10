@@ -135,3 +135,4 @@ exports.deleteQuizSet = async (req, res) => {
       res.status(500).json({ error: 'An error occurred while filtering quizzes by type.' });
     }
   };
+  
