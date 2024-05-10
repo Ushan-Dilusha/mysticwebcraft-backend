@@ -14,17 +14,23 @@ const courseSchema = new mongoose.Schema({
         required: true
     },
     resources: {
-        type: String
+        type: [String],
+        
     },
-    thumbnail: {
-        type: String
+    image: {
+        data: Buffer,
+        contentType: String,
     },
     chapters: {
-        type: [String]
+        type: [String],
+       
     },
     price: {
-        type: Number,
+        type: String,
         required: true
+    },
+    lastUpdated: {
+        type: String,
     }
 });
 
