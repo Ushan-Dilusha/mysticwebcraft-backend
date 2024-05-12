@@ -2,7 +2,7 @@ const { Router } = require("express")
 const router = Router()
 
 const { getOneCommunity, getAllCommunities, addCommunity, updateCommunity, deleteCommunity } = require("../controllers/commiunityController")
-const { getCourseById, getAllCourses, createCourse, updateCourse, deleteCourse } = require("../controllers/courseController")
+const { getCourseById, AddCourse, updateCourse ,uploadMiddleware, ViewCourses, DeleteCourse} = require("../controllers/courseController")
 const { analyzeCodeComplexity } = require("../controllers/codeAnalyzerController")
 
 const multer = require('multer');
