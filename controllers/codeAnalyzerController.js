@@ -1,18 +1,19 @@
-// controllers/codeComplexityController.js
+const escomplex = require('escomplex');
 
-const { analyzeCodeComplexity } = require('../models/codeAnalyzer');
-
-exports.analyzeCode = async (req, res) => {
-    const code = req.body.code;
-    if (!code) {
-        return res.status(400).json({ error: 'Please provide code to analyze.' });
-    }
-
+const analyzeCodeComplexity = async (req, res) => {
+    const codeSnippet = req.body.code;
+    // Convert codeSnippet to a single-line JSON string for logging
+    const codeSnippetString = JSON.stringify(codeSnippet, null, 0)
+        .replace(/(?:\r\n|\r|\n|\t)/g, ''); // Remove line breaks and tabs
+    console.log(codeSnippetString);
     try {
-        const result = await analyzeCodeComplexity(code);
-        return res.json({ complexity: result });
+        const report = await escomplex.analyse(codeSnippet);
+        res.json(report);
     } catch (error) {
-        console.error('Error analyzing code complexity:', error);
-        return res.status(500).json({ error: 'An error occurred while analyzing the code complexity.' });
+        res.json(error.message);
     }
+};
+
+module.exports = {
+    analyzeCodeComplexity
 };
