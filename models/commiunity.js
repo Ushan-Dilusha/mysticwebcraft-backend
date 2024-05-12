@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const communitySchema = new Schema({
-    id: {
-        type: Number,
-        unique: true,
-    },
+const communitySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -28,4 +23,4 @@ const communitySchema = new Schema({
     }
 }, { timestamps: true }); 
 
-module.exports = mongoose.model("Community", communitySchema);
+module.exports = mongoose.model('Community', communitySchema);

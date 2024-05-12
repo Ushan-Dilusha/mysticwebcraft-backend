@@ -1,9 +1,9 @@
 const { Router } = require("express")
 const router = Router()
 
-const { getOneCommunity, getAllCommunities, addCommunity, updateCommunity, deleteCommunity } = require("../controllers/CommiunityController")
-const { getCourseById, ViewCourses, AddCourse, updateCourse, DeleteCourse,uploadMiddleware } = require("../controllers/CourseController")
-
+const { getOneCommunity, getAllCommunities, addCommunity, updateCommunity, deleteCommunity } = require("../controllers/commiunityController")
+const { getCourseById, getAllCourses, createCourse, updateCourse, deleteCourse } = require("../controllers/courseController")
+const { analyzeCodeComplexity } = require("../controllers/codeAnalyzerController")
 
 const multer = require('multer');
 
@@ -98,5 +98,7 @@ router.get('/:questionId', quizSetController.findQuestionById);
 router.get('/quiz/:questionId', quizSetController.findQuizById);
 
 
+
+router.post('/analyze-code', analyzeCodeComplexity);
 
 module.exports = router;
