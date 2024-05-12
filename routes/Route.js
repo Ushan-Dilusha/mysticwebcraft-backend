@@ -5,10 +5,6 @@ const { getOneCommunity, getAllCommunities, addCommunity, updateCommunity, delet
 const { getCourseById, getAllCourses, createCourse, updateCourse, deleteCourse } = require("../controllers/courseController")
 const { analyzeCodeComplexity } = require("../controllers/codeAnalyzerController")
 
-const { getOneCommunity, getAllCommunities, addCommunity, updateCommunity, deleteCommunity } = require("../controllers/CommiunityController")
-const { getCourseById, ViewCourses, AddCourse, updateCourse, DeleteCourse,uploadMiddleware } = require("../controllers/CourseController")
-
-
 const multer = require('multer');
 
 // Set up Multer for file uploads
