@@ -23,7 +23,7 @@
         "dotenv": "^16.4.5",
         "escomplex": "^2.0.0-alpha",
         "esprima": "^4.0.1",
-        "express": "^4.18.3",
+        "express": "^4.21.2",
         "helmet": "^7.1.0",
         "madge": "^6.1.0",
         "mongoose": "^8.2.2",
